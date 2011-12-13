@@ -2,8 +2,11 @@
 //Author:@mxfli
 //date::2011年 12月 13日 星期二 13:33:06 UTC
 
-var fs = require('fs');
-
+var fs = require('fs'), url = require('url');
+var that = [];
+/**
+ * Parse cookies file and return the result to cb;
+ */
 function parse(file,cb){
     fs.readFile(file, function(err,buffer){ 
         if(err){ throw err;}
@@ -28,9 +31,27 @@ function parse(file,cb){
             }
 
         });
-        
-        cb(result);
+
+        that = result;
+        cb && cb(result);
     });
 }
 
+
 module.exports.parse = parse;
+module.exports.add = function(cookie){
+    that = that.filter(function(c){
+        // Avoid duplication (same path, same name)
+        return !(c.name == cookie.name && c.path == cookie.path);
+    });
+    that.push(cookie);
+}
+module.exports.get = function(){return that};
+module.exports.getCookieString = function(){
+    var result = that.map(function(cookie){
+        return cookie['name'] + '=' + cookie['value'];
+    }).join(';');
+
+    console.log('Get cookies:',result);
+    return result;
+};

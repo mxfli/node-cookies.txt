@@ -1,6 +1,10 @@
 var ctp = require('../index.js');
 
-ctp.parse('cookies.txt',function(result){
-    console.log(result);
+ctp.parse(__dirname + '/cookies.txt', function(result){
+    
+    console.log('Cookie parse result:', result);
+
+    console.log('get Cookie String:', ctp.getCookieString());
 });
+
 
