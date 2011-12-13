@@ -19,14 +19,12 @@ function parse(file,cb){
             //console.log(index,':',line);    
             if(line.trim().length>0){
                 var cookie = {};
-                line.split('\t').forEach(function(c,index){
-                    if(cookieDefine[index] === 'expires'){c=(new Date(c*1000)).toUTCString()}
+                line.split(/\s/).forEach(function(c,index){
+                    if(cookieDefine[index] === 'expires'){c=(new Date(c*1000))}
                     cookie[cookieDefine[index]]=c;
                 });
 
                 result.push(cookie);
-
-                console.log(cookie);
             }
 
         });
