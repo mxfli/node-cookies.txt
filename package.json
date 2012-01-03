@@ -1,0 +1,16 @@
+{ "name":"node-cookies.txt",
+  "description":"This is a wget cookies.txt formart parser for nodejs and request.",
+  "tags":["wget", "cookie", "http", "request"],
+  "version":"0.0.1", "author":"Inaction <Inaction.me@gmail.com> http://inaction.me",
+  "repository":{
+    "type":"git",
+    "url":"https://github.com/mxfli/node-cookies.txt.git"
+  },
+  "bugs":{
+    "url":"https://github.com/mxfli/node-cookies.txt/issues"
+  },
+  "engines":{
+    "node":">= 0.4.1 < 0.7.0"
+  },
+  "main":"index"
+}
