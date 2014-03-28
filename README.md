@@ -1,2 +1,2 @@
 #README
-    This is a wget cookies.txt formart parser for nodejs.
+ This is a _wget cookies.txt_ formart parser for nodejs.
