@@ -1,9 +1,13 @@
+cookies.txt
+===========
+
 [![Build Status](https://travis-ci.org/mxfli/node-cookies.txt.png)](https://travis-ci.org/mxfli/node-cookies.txt)
 
 #README
  This is a _wget cookies.txt_ formart parser for nodejs.
 
-  Convert wget cookies.txt format file into JSON boject.
+ Convert wget cookies.txt format file into JSON boject.
+
 
 ##Install
 ```npm install cookies.txt```
@@ -16,5 +20,17 @@ cookie.parse('your cookies.txt file path here.', function(jsonCookieObj){
   //...
 });
 ```
+### Working with request
+```
+var request = require('request');
+var cookie = requeire('cookies.txt');
+
+cookie.parse('your cookies.txt file path here.', function(jsonCookieObj){
+  //your codes here 
+  request.get({url:'a http url',encoding:null, headers:{Cookie:cookie.getCookieString()}}).pipe(AWritebleStreamInstance);
+  //...
+});
+```
+
 ##License
 MIT
