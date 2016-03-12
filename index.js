@@ -18,6 +18,9 @@ var parse = function (file, cb) {
   assert(fs.existsSync(file));
   assert(typeof cb === 'function');
 
+  //Fix: 2 cookies file is merged in on Object.
+  COOKIES.length = 0;
+
   fs.readFile(file, function read(err, buffer) {
     if (err) {
       throw err;
