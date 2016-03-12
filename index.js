@@ -7,7 +7,7 @@ var fs = require('fs');
 var url = require('url');
 var assert = require('assert');
 
-var cookieDefine = ['domain', 'httponly', 'path', 'secure', 'expires', 'name', 'value'];
+var COOKIE_FIELDS = ['domain', 'httponly', 'path', 'secure', 'expires', 'name', 'value'];
 //Object contains parsed cookies from cookies.txt
 var COOKIES = [];
 
@@ -17,6 +17,9 @@ var COOKIES = [];
 var parse = function (file, cb) {
   assert(fs.existsSync(file));
   assert(typeof cb === 'function');
+
+  //Fix: 2 cookies file is merged in on Object.
+  COOKIES.length = 0;
 
   fs.readFile(file, function read(err, buffer) {
     if (err) {
@@ -42,10 +45,10 @@ var parse = function (file, cb) {
       if (line.length > 0 && !/^#/.test(line)) {
         var cookie = {};
         line.split(/\s/).forEach(function (c, index) {
-          if (cookieDefine[index] === 'expires') {
+          if (COOKIE_FIELDS[index] === 'expires') {
             c = (new Date(parseInt(c, 10) * 1000));
           }
-          cookie[cookieDefine[index]] = c;
+          cookie[COOKIE_FIELDS[index]] = c;
         });
 
         COOKIES.push(cookie);
