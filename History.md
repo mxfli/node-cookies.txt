@@ -1,5 +1,8 @@
 History of cookies.txt
 =====
+### 0.1.2 
+* Fix: Parse 2 cookies files, the result is merged into one globale object. Reset cookie object when call parse() method.
+
 ### 0.1.1
 * parse cookies only
 * remove old jar request support; new way: ``` request.get({url:'url', jar:true, headers:{Cookie:cookie.getCookieString('url')}});```
