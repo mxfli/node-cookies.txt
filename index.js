@@ -72,6 +72,5 @@ exports.getCookieString = function (urlStr) {
     return pre;
   }, []).join(';');
 
-  console.log('Get "Cookie" :', result);
   return result;
 };
